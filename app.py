@@ -455,7 +455,8 @@ st.image(
         "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a",
         "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
         "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-        "https://images.unsplash.com/photo-1562774053-701939374585"
+        "https://images.unsplash.com/photo-1562774053-701939374585",
+        "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a",
     ],
     caption=[
         "Modern Campus",
