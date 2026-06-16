@@ -25,113 +25,176 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # =====================================================
-# CUSTOM CSS
+# ULTRA MODERN FRONTEND CSS
 # =====================================================
 
 st.markdown("""
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Poppins', sans-serif;
 }
 
-/* MAIN BACKGROUND */
+/* =====================================================
+BACKGROUND
+===================================================== */
 
 .stApp {
 
     background:
     linear-gradient(
-        rgba(15,23,42,0.92),
+        rgba(2,6,23,0.90),
         rgba(15,23,42,0.92)
     ),
-    url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1");
+    url("https://images.unsplash.com/photo-1509062522246-3755977927d7");
 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 
-    color: white;
+    overflow-x: hidden;
 }
 
-/* HIDE STREAMLIT */
+/* =====================================================
+HIDE STREAMLIT
+===================================================== */
 
 #MainMenu {visibility:hidden;}
 footer {visibility:hidden;}
 header {visibility:hidden;}
 
-/* MAIN TITLE */
+/* =====================================================
+TITLE
+===================================================== */
 
 .main-title {
 
     text-align:center;
 
-    font-size:68px;
+    font-size:78px;
 
-    font-weight:700;
+    font-weight:800;
 
-    margin-top:10px;
+    margin-top:20px;
+
+    letter-spacing:1px;
 
     background: linear-gradient(
         to right,
         #38BDF8,
         #818CF8,
-        #C084FC
+        #A855F7,
+        #EC4899
     );
 
     -webkit-background-clip:text;
 
     -webkit-text-fill-color:transparent;
+
+    text-shadow:0 0 40px rgba(255,255,255,0.15);
+
+    animation: glow 4s ease infinite;
 }
 
-/* SUBTITLE */
+@keyframes glow {
+
+    0% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.2);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+/* =====================================================
+SUBTITLE
+===================================================== */
 
 .sub-title {
 
     text-align:center;
 
+    font-size:24px;
+
     color:#E2E8F0;
 
-    font-size:22px;
+    margin-bottom:40px;
 
-    margin-bottom:35px;
+    font-weight:400;
+
+    letter-spacing:0.5px;
 }
 
-/* GLASS CARD */
+/* =====================================================
+GLASS CARD
+===================================================== */
 
 .glass-card {
 
-    background: rgba(17,24,39,0.78);
+    background: rgba(15,23,42,0.72);
 
-    border-radius:25px;
+    border-radius:30px;
 
-    padding:35px;
+    padding:40px;
 
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(22px);
 
-    border:1px solid rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.10);
 
-    box-shadow:0 10px 35px rgba(0,0,0,0.45);
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    0 0 30px rgba(99,102,241,0.12);
+
+    transition:0.4s ease;
 }
 
-/* INPUT BOX */
+.glass-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.55),
+    0 0 35px rgba(99,102,241,0.25);
+}
+
+/* =====================================================
+INPUT BOX
+===================================================== */
 
 .stTextInput > div > div > input {
 
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.96);
 
-    border:2px solid #6366F1;
+    border:2px solid transparent;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    padding:16px;
+    padding:18px;
 
     color:black;
 
     font-size:17px;
 
     font-weight:500;
+
+    transition:0.3s ease;
+
+    box-shadow:0 5px 18px rgba(0,0,0,0.15);
+}
+
+.stTextInput > div > div > input:focus {
+
+    border:2px solid #8B5CF6;
+
+    box-shadow:
+    0 0 20px rgba(139,92,246,0.45);
 }
 
 /* PLACEHOLDER */
@@ -141,7 +204,9 @@ input::placeholder {
     color:#475569 !important;
 }
 
-/* BUTTON */
+/* =====================================================
+BUTTON
+===================================================== */
 
 .stButton > button {
 
@@ -149,33 +214,46 @@ input::placeholder {
 
     border:none;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    padding:15px;
+    padding:16px;
 
     background: linear-gradient(
         90deg,
-        #6366F1,
-        #8B5CF6
+        #4F46E5,
+        #7C3AED,
+        #A855F7
     );
 
     color:white;
 
-    font-size:18px;
+    font-size:19px;
 
-    font-weight:600;
+    font-weight:700;
 
-    transition:0.3s;
+    transition:0.35s ease;
+
+    box-shadow:0 10px 25px rgba(124,58,237,0.35);
 }
 
 .stButton > button:hover {
 
-    transform:translateY(-2px);
+    transform: translateY(-3px) scale(1.01);
 
-    box-shadow:0 10px 25px rgba(99,102,241,0.5);
+    box-shadow:
+    0 15px 35px rgba(124,58,237,0.5);
+
+    background: linear-gradient(
+        90deg,
+        #6366F1,
+        #8B5CF6,
+        #D946EF
+    );
 }
 
-/* CHAT USER */
+/* =====================================================
+USER CHAT
+===================================================== */
 
 .chat-user {
 
@@ -185,43 +263,60 @@ input::placeholder {
         #3B82F6
     );
 
-    padding:16px;
+    padding:18px;
 
-    border-radius:16px;
+    border-radius:18px;
 
-    margin:12px 0;
+    margin:14px 0;
 
     color:white;
 
     font-size:17px;
+
+    font-weight:500;
+
+    box-shadow:0 8px 20px rgba(37,99,235,0.35);
 }
 
-/* CHAT BOT */
+/* =====================================================
+BOT CHAT
+===================================================== */
 
 .chat-bot {
 
     background: rgba(255,255,255,0.08);
 
-    border-left:5px solid #8B5CF6;
+    border-left:5px solid #A855F7;
 
-    padding:18px;
+    padding:22px;
 
-    border-radius:16px;
+    border-radius:18px;
 
-    margin:12px 0;
+    margin:14px 0;
 
     color:#F8FAFC;
 
-    line-height:1.8;
+    line-height:1.9;
 
     font-size:17px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* SIDEBAR */
+/* =====================================================
+SIDEBAR
+===================================================== */
 
 section[data-testid="stSidebar"] {
 
-    background:#111827;
+    background:
+    linear-gradient(
+        180deg,
+        #111827,
+        #0F172A
+    );
+
+    border-right:1px solid rgba(255,255,255,0.08);
 }
 
 /* SIDEBAR TEXT */
@@ -231,35 +326,51 @@ section[data-testid="stSidebar"] * {
     color:white !important;
 }
 
-/* IMAGES */
+/* =====================================================
+IMAGES
+===================================================== */
 
 img {
 
-    border-radius:18px !important;
+    border-radius:22px !important;
 
-    box-shadow:0 8px 25px rgba(0,0,0,0.35);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.45);
+
+    transition:0.4s ease;
 }
 
-/* FLOATING AVATAR */
+img:hover {
+
+    transform: scale(1.03);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.55);
+}
+
+/* =====================================================
+FLOATING AI BOT
+===================================================== */
 
 .avatar {
 
     position:fixed;
 
-    bottom:20px;
+    bottom:25px;
 
-    right:20px;
+    right:25px;
 
-    width:85px;
+    width:90px;
 
-    height:85px;
+    height:90px;
 
     border-radius:50%;
 
     background: linear-gradient(
         135deg,
-        #6366F1,
-        #8B5CF6
+        #4F46E5,
+        #8B5CF6,
+        #EC4899
     );
 
     display:flex;
@@ -268,9 +379,10 @@ img {
 
     align-items:center;
 
-    font-size:38px;
+    font-size:42px;
 
-    box-shadow:0 0 30px rgba(99,102,241,0.7);
+    box-shadow:
+    0 0 35px rgba(139,92,246,0.8);
 
     animation: float 3s ease-in-out infinite;
 
@@ -279,12 +391,22 @@ img {
 
 @keyframes float {
 
-    0% {transform:translateY(0px);}
-    50% {transform:translateY(-10px);}
-    100% {transform:translateY(0px);}
+    0% {
+        transform:translateY(0px);
+    }
+
+    50% {
+        transform:translateY(-12px);
+    }
+
+    100% {
+        transform:translateY(0px);
+    }
 }
 
-/* FOOTER */
+/* =====================================================
+FOOTER
+===================================================== */
 
 .footer {
 
@@ -292,21 +414,53 @@ img {
 
     color:#CBD5E1;
 
-    margin-top:40px;
+    margin-top:50px;
 
     font-size:15px;
+
+    letter-spacing:0.5px;
 }
 
-/* MOBILE */
+/* =====================================================
+SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+
+    width:10px;
+}
+
+::-webkit-scrollbar-track {
+
+    background:#0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:linear-gradient(
+        #6366F1,
+        #A855F7
+    );
+
+    border-radius:20px;
+}
+
+/* =====================================================
+MOBILE
+===================================================== */
 
 @media(max-width:768px){
 
 .main-title{
-    font-size:42px;
+    font-size:48px;
 }
 
 .sub-title{
-    font-size:16px;
+    font-size:17px;
+}
+
+.glass-card{
+    padding:22px;
 }
 
 }
@@ -338,7 +492,7 @@ left:0;
 particlesJS("particles-js", {
   "particles": {
     "number": {"value": 80},
-    "color": {"value": "#6366F1"},
+    "color": {"value": "#8B5CF6"},
     "shape": {"type": "circle"},
     "opacity": {"value": 0.5},
     "size": {"value": 3},
@@ -384,7 +538,7 @@ with open("sistec_data.txt", "r", encoding="utf-8") as f:
     data = f.read()
 
 # =====================================================
-# TEXT CHUNKING
+# CHUNKING
 # =====================================================
 
 def chunk_text(text, chunk_size=500, overlap=50):
@@ -418,7 +572,7 @@ model_emb = load_model()
 embeddings = model_emb.encode(texts).astype("float32")
 
 # =====================================================
-# FAISS INDEX
+# FAISS
 # =====================================================
 
 index = faiss.IndexFlatL2(embeddings.shape[1])
@@ -429,17 +583,16 @@ index.add(embeddings)
 # SIDEBAR
 # =====================================================
 
-st.sidebar.title("🤖 Features")
+st.sidebar.title("🤖 AI Features")
 
 st.sidebar.markdown("""
-✅ AI Chatbot  
-✅ Voice Assistant UI  
+✅ Smart AI Chatbot  
 ✅ Typing Animation  
 ✅ Chat History  
-✅ Particle Background  
-✅ Smart Search  
 ✅ Gemini AI  
-✅ Responsive UI  
+✅ Particle Effects  
+✅ Modern UI  
+✅ Responsive Design  
 """)
 
 # =====================================================
@@ -474,11 +627,6 @@ question = st.text_input(
     "💬 Ask Your Question",
     placeholder="Example: What is the hostel fee?"
 )
-
-voice_btn = st.button("🎤 Voice Assistant")
-
-if voice_btn:
-    st.info("Voice assistant feature can be added using speech recognition.")
 
 # =====================================================
 # GENERATE ANSWER
@@ -519,9 +667,7 @@ Answer:
         llm = genai.GenerativeModel("gemini-2.5-flash-lite")
 
         with st.spinner("🤖 AI Thinking..."):
-
             response = llm.generate_content(prompt)
-
             answer = response.text
 
         st.session_state.messages.append(("bot", answer))
@@ -554,7 +700,7 @@ for role, msg in st.session_state.messages:
                 unsafe_allow_html=True
             )
 
-            time.sleep(0.003)
+            time.sleep(0.002)
 
 # =====================================================
 # CLOSE CARD
@@ -563,7 +709,7 @@ for role, msg in st.session_state.messages:
 st.markdown("</div>", unsafe_allow_html=True)
 
 # =====================================================
-# FLOATING BOT
+# FLOATING AVATAR
 # =====================================================
 
 st.markdown("""
