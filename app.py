@@ -1,3 +1,4 @@
+```python
 import streamlit as st
 import google.generativeai as genai
 from sentence_transformers import SentenceTransformer
@@ -25,176 +26,113 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # =====================================================
-# ULTRA MODERN FRONTEND CSS
+# CUSTOM CSS
 # =====================================================
 
 st.markdown("""
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Poppins', sans-serif;
 }
 
-/* =====================================================
-BACKGROUND
-===================================================== */
+/* MAIN BACKGROUND */
 
 .stApp {
 
     background:
     linear-gradient(
-        rgba(2,6,23,0.90),
+        rgba(15,23,42,0.92),
         rgba(15,23,42,0.92)
     ),
-    url("https://images.unsplash.com/photo-1509062522246-3755977927d7");
+    url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1");
 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 
-    overflow-x: hidden;
+    color: white;
 }
 
-/* =====================================================
-HIDE STREAMLIT
-===================================================== */
+/* HIDE STREAMLIT */
 
 #MainMenu {visibility:hidden;}
 footer {visibility:hidden;}
 header {visibility:hidden;}
 
-/* =====================================================
-TITLE
-===================================================== */
+/* MAIN TITLE */
 
 .main-title {
 
     text-align:center;
 
-    font-size:78px;
+    font-size:68px;
 
-    font-weight:800;
+    font-weight:700;
 
-    margin-top:20px;
-
-    letter-spacing:1px;
+    margin-top:10px;
 
     background: linear-gradient(
         to right,
         #38BDF8,
         #818CF8,
-        #A855F7,
-        #EC4899
+        #C084FC
     );
 
     -webkit-background-clip:text;
 
     -webkit-text-fill-color:transparent;
-
-    text-shadow:0 0 40px rgba(255,255,255,0.15);
-
-    animation: glow 4s ease infinite;
 }
 
-@keyframes glow {
-
-    0% {
-        filter: brightness(1);
-    }
-
-    50% {
-        filter: brightness(1.2);
-    }
-
-    100% {
-        filter: brightness(1);
-    }
-}
-
-/* =====================================================
-SUBTITLE
-===================================================== */
+/* SUBTITLE */
 
 .sub-title {
 
     text-align:center;
 
-    font-size:24px;
-
     color:#E2E8F0;
 
-    margin-bottom:40px;
+    font-size:22px;
 
-    font-weight:400;
-
-    letter-spacing:0.5px;
+    margin-bottom:35px;
 }
 
-/* =====================================================
-GLASS CARD
-===================================================== */
+/* GLASS CARD */
 
 .glass-card {
 
-    background: rgba(15,23,42,0.72);
+    background: rgba(17,24,39,0.78);
 
-    border-radius:30px;
+    border-radius:25px;
 
-    padding:40px;
+    padding:35px;
 
-    backdrop-filter: blur(22px);
+    backdrop-filter: blur(18px);
 
-    border:1px solid rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.1);
 
-    box-shadow:
-    0 10px 40px rgba(0,0,0,0.45),
-    0 0 30px rgba(99,102,241,0.12);
-
-    transition:0.4s ease;
+    box-shadow:0 10px 35px rgba(0,0,0,0.45);
 }
 
-.glass-card:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,0.55),
-    0 0 35px rgba(99,102,241,0.25);
-}
-
-/* =====================================================
-INPUT BOX
-===================================================== */
+/* INPUT BOX */
 
 .stTextInput > div > div > input {
 
-    background: rgba(255,255,255,0.96);
+    background: rgba(255,255,255,0.95);
 
-    border:2px solid transparent;
+    border:2px solid #6366F1;
 
-    border-radius:20px;
+    border-radius:18px;
 
-    padding:18px;
+    padding:16px;
 
     color:black;
 
     font-size:17px;
 
     font-weight:500;
-
-    transition:0.3s ease;
-
-    box-shadow:0 5px 18px rgba(0,0,0,0.15);
-}
-
-.stTextInput > div > div > input:focus {
-
-    border:2px solid #8B5CF6;
-
-    box-shadow:
-    0 0 20px rgba(139,92,246,0.45);
 }
 
 /* PLACEHOLDER */
@@ -204,9 +142,7 @@ input::placeholder {
     color:#475569 !important;
 }
 
-/* =====================================================
-BUTTON
-===================================================== */
+/* BUTTON */
 
 .stButton > button {
 
@@ -214,46 +150,33 @@ BUTTON
 
     border:none;
 
-    border-radius:20px;
+    border-radius:18px;
 
-    padding:16px;
-
-    background: linear-gradient(
-        90deg,
-        #4F46E5,
-        #7C3AED,
-        #A855F7
-    );
-
-    color:white;
-
-    font-size:19px;
-
-    font-weight:700;
-
-    transition:0.35s ease;
-
-    box-shadow:0 10px 25px rgba(124,58,237,0.35);
-}
-
-.stButton > button:hover {
-
-    transform: translateY(-3px) scale(1.01);
-
-    box-shadow:
-    0 15px 35px rgba(124,58,237,0.5);
+    padding:15px;
 
     background: linear-gradient(
         90deg,
         #6366F1,
-        #8B5CF6,
-        #D946EF
+        #8B5CF6
     );
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:0.3s;
 }
 
-/* =====================================================
-USER CHAT
-===================================================== */
+.stButton > button:hover {
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(99,102,241,0.5);
+}
+
+/* CHAT USER */
 
 .chat-user {
 
@@ -263,60 +186,43 @@ USER CHAT
         #3B82F6
     );
 
-    padding:18px;
+    padding:16px;
 
-    border-radius:18px;
+    border-radius:16px;
 
-    margin:14px 0;
+    margin:12px 0;
 
     color:white;
 
     font-size:17px;
-
-    font-weight:500;
-
-    box-shadow:0 8px 20px rgba(37,99,235,0.35);
 }
 
-/* =====================================================
-BOT CHAT
-===================================================== */
+/* CHAT BOT */
 
 .chat-bot {
 
     background: rgba(255,255,255,0.08);
 
-    border-left:5px solid #A855F7;
+    border-left:5px solid #8B5CF6;
 
-    padding:22px;
+    padding:18px;
 
-    border-radius:18px;
+    border-radius:16px;
 
-    margin:14px 0;
+    margin:12px 0;
 
     color:#F8FAFC;
 
-    line-height:1.9;
+    line-height:1.8;
 
     font-size:17px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* =====================================================
-SIDEBAR
-===================================================== */
+/* SIDEBAR */
 
 section[data-testid="stSidebar"] {
 
-    background:
-    linear-gradient(
-        180deg,
-        #111827,
-        #0F172A
-    );
-
-    border-right:1px solid rgba(255,255,255,0.08);
+    background:#111827;
 }
 
 /* SIDEBAR TEXT */
@@ -326,51 +232,35 @@ section[data-testid="stSidebar"] * {
     color:white !important;
 }
 
-/* =====================================================
-IMAGES
-===================================================== */
+/* IMAGES */
 
 img {
 
-    border-radius:22px !important;
+    border-radius:18px !important;
 
-    box-shadow:
-    0 10px 30px rgba(0,0,0,0.45);
-
-    transition:0.4s ease;
+    box-shadow:0 8px 25px rgba(0,0,0,0.35);
 }
 
-img:hover {
-
-    transform: scale(1.03);
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,0.55);
-}
-
-/* =====================================================
-FLOATING AI BOT
-===================================================== */
+/* FLOATING AVATAR */
 
 .avatar {
 
     position:fixed;
 
-    bottom:25px;
+    bottom:20px;
 
-    right:25px;
+    right:20px;
 
-    width:90px;
+    width:85px;
 
-    height:90px;
+    height:85px;
 
     border-radius:50%;
 
     background: linear-gradient(
         135deg,
-        #4F46E5,
-        #8B5CF6,
-        #EC4899
+        #6366F1,
+        #8B5CF6
     );
 
     display:flex;
@@ -379,10 +269,9 @@ FLOATING AI BOT
 
     align-items:center;
 
-    font-size:42px;
+    font-size:38px;
 
-    box-shadow:
-    0 0 35px rgba(139,92,246,0.8);
+    box-shadow:0 0 30px rgba(99,102,241,0.7);
 
     animation: float 3s ease-in-out infinite;
 
@@ -391,22 +280,12 @@ FLOATING AI BOT
 
 @keyframes float {
 
-    0% {
-        transform:translateY(0px);
-    }
-
-    50% {
-        transform:translateY(-12px);
-    }
-
-    100% {
-        transform:translateY(0px);
-    }
+    0% {transform:translateY(0px);}
+    50% {transform:translateY(-10px);}
+    100% {transform:translateY(0px);}
 }
 
-/* =====================================================
-FOOTER
-===================================================== */
+/* FOOTER */
 
 .footer {
 
@@ -414,53 +293,21 @@ FOOTER
 
     color:#CBD5E1;
 
-    margin-top:50px;
+    margin-top:40px;
 
     font-size:15px;
-
-    letter-spacing:0.5px;
 }
 
-/* =====================================================
-SCROLLBAR
-===================================================== */
-
-::-webkit-scrollbar {
-
-    width:10px;
-}
-
-::-webkit-scrollbar-track {
-
-    background:#0F172A;
-}
-
-::-webkit-scrollbar-thumb {
-
-    background:linear-gradient(
-        #6366F1,
-        #A855F7
-    );
-
-    border-radius:20px;
-}
-
-/* =====================================================
-MOBILE
-===================================================== */
+/* MOBILE */
 
 @media(max-width:768px){
 
 .main-title{
-    font-size:48px;
+    font-size:42px;
 }
 
 .sub-title{
-    font-size:17px;
-}
-
-.glass-card{
-    padding:22px;
+    font-size:16px;
 }
 
 }
@@ -492,7 +339,7 @@ left:0;
 particlesJS("particles-js", {
   "particles": {
     "number": {"value": 80},
-    "color": {"value": "#8B5CF6"},
+    "color": {"value": "#6366F1"},
     "shape": {"type": "circle"},
     "opacity": {"value": 0.5},
     "size": {"value": 3},
@@ -538,7 +385,7 @@ with open("sistec_data.txt", "r", encoding="utf-8") as f:
     data = f.read()
 
 # =====================================================
-# CHUNKING
+# TEXT CHUNKING
 # =====================================================
 
 def chunk_text(text, chunk_size=500, overlap=50):
@@ -572,7 +419,7 @@ model_emb = load_model()
 embeddings = model_emb.encode(texts).astype("float32")
 
 # =====================================================
-# FAISS
+# FAISS INDEX
 # =====================================================
 
 index = faiss.IndexFlatL2(embeddings.shape[1])
@@ -583,16 +430,17 @@ index.add(embeddings)
 # SIDEBAR
 # =====================================================
 
-st.sidebar.title("🤖 AI Features")
+st.sidebar.title("🤖 Features")
 
 st.sidebar.markdown("""
-✅ Smart AI Chatbot  
+✅ AI Chatbot  
+✅ Voice Assistant UI  
 ✅ Typing Animation  
 ✅ Chat History  
+✅ Particle Background  
+✅ Smart Search  
 ✅ Gemini AI  
-✅ Particle Effects  
-✅ Modern UI  
-✅ Responsive Design  
+✅ Responsive UI  
 """)
 
 # =====================================================
@@ -606,7 +454,8 @@ st.image(
         "https://images.unsplash.com/photo-1562774053-701939374585",
         "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a",
         "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
-        "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+        "https://images.unsplash.com/photo-1562774053-701939374585"
     ],
     caption=[
         "Modern Campus",
@@ -627,6 +476,11 @@ question = st.text_input(
     "💬 Ask Your Question",
     placeholder="Example: What is the hostel fee?"
 )
+
+voice_btn = st.button("🎤 Voice Assistant")
+
+if voice_btn:
+    st.info("Voice assistant feature can be added using speech recognition.")
 
 # =====================================================
 # GENERATE ANSWER
@@ -667,7 +521,9 @@ Answer:
         llm = genai.GenerativeModel("gemini-2.5-flash-lite")
 
         with st.spinner("🤖 AI Thinking..."):
+
             response = llm.generate_content(prompt)
+
             answer = response.text
 
         st.session_state.messages.append(("bot", answer))
@@ -700,7 +556,7 @@ for role, msg in st.session_state.messages:
                 unsafe_allow_html=True
             )
 
-            time.sleep(0.002)
+            time.sleep(0.003)
 
 # =====================================================
 # CLOSE CARD
@@ -709,7 +565,7 @@ for role, msg in st.session_state.messages:
 st.markdown("</div>", unsafe_allow_html=True)
 
 # =====================================================
-# FLOATING AVATAR
+# FLOATING BOT
 # =====================================================
 
 st.markdown("""
@@ -744,3 +600,4 @@ st.markdown("""
 Made by Alisha Khan ❤️
 </div>
 """, unsafe_allow_html=True)
+```
